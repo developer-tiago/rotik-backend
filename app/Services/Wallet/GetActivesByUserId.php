@@ -12,7 +12,9 @@ class GetActivesByUserId
 
     public function execute($userId)
     {
-        $wallet = $this->wallet->where('user_id', $userId)->get();
+        $wallet = $this->wallet
+            ->with('active')
+            ->where('user_id', $userId)->get();
 
         return $wallet;
     }
